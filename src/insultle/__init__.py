@@ -1,108 +1,212 @@
-
-#INSULTLE
-#Dafne Belardinelli, Edoardo Pani, Qian Qian Zhang
+# INSULTLE
+# Dafne Belardinelli, Edoardo Pani, Qian Qian Zhang
 
 import pygame
 import random
-from pathlib import Path
+#from pathlib import Path
 
-pygame.init()
+def main() -> None:
+    pygame.init()
 
-Larghezza_Schermo = 822
-Altezza_Schermo = 745
-schermo = pygame.display.set_mode((Larghezza_Schermo, Altezza_Schermo)) 
-pygame.display.set_caption("Insultle") 
+    Larghezza_Schermo = 822
+    Altezza_Schermo = 745
+    schermo = pygame.display.set_mode((Larghezza_Schermo, Altezza_Schermo)) 
+    pygame.display.set_caption("Insultle") 
 
-imgSfondo = pygame.image.load("sfondoINSULTLE.jpg") 
-imgSfondo = pygame.transform.scale(imgSfondo,(Larghezza_Schermo,Altezza_Schermo))
+    imgSfondo = pygame.image.load("sfondoINSULTLE.jpg") 
+   # imgSfondo = pygame.transform.scale(imgSfondo,(Larghezza_Schermo,Altezza_Schermo))
 
-FontLettere = pygame.font.SysFont('Impact', 60)
-            
-ParoleComputer = ["RINCO", "SCEMO", "TONTO", "PAZZO", "LENTO", "EBETE", "PIGRO", "ROZZO", "FOLLE", "MOLLE", "ASINO", "CAPRA", "CAGNA", "FESSO", "VERME", "PIRLA", "CLOWN", "MATTO"]
-ParoleAccUtente = ["acqua", "adulto", "aereo", "aglio", "aiuto", "album", "amaro", "amico", "amica", "amore", "ampio", "anima", "anno", "ansia", "apice", "aroma", "asino", "aspro", "attua", "avere", "bacio", "banca", "barca", "basso", "beato", "bella", "bello", "benda", "birra", "bocca", "bolle", "bordo", "bosco", "bravo", "breve", "bruno", "buono", "burro", "caldo", "calma", "calvo", "campo", "canto", "capra", "carne", "carro", "carta", "cassa", "cella", "censo", "cento", "certo", "cielo", "cifra", "citta", "colpa", "collo", "conto", "copra", "corda", "corpo", "corso", "costa", "crema", "cuore", "danno", "degno", "denso", "dente", "detto", "dieci", "disco", "dolce", "donna", "dorme", "dorso", "duomo", "edera", "entra", "esame", "esito", "estate", "falso", "fango", "fatta", "fatto", "ferma", "ferro", "festa", "fiore", "filo", "firma", "fisso", "fiume", "foglia", "folla", "fondo", "forno", "forse", "forte", "fossa", "frase", "freno", "frigo", "fuoco", "fuori", "gallo", "gamba", "gatto", "gente", "genio", "gesso", "gioco", "gioia", "grado", "grano", "grato", "grave", "grido", "guida", "gusto", "hotel", "idolo", "igloo", "imita", "invia", "labbro", "lampo", "largo", "latte", "leale", "legno", "lento", "libro", "lieto", "limbo", "limone", "linea", "lista", "litro", "luogo", "lusso", "madre", "magia", "mamma", "manda", "mango", "marca", "marea", "marmo", "massa", "matto", "mezzo", "miele", "misto", "molto", "mondo", "morte", "mossa", "motto", "museo", "nasce", "nervo", "nesso", "nobile", "norma", "notte", "nuovo", "nuova", "occhi", "odora", "offre", "oliva", "ombra", "opera", "orari", "ormai", "osare", "padre", "paese", "palco", "palla", "palma", "panca", "paura", "pezzo", "piano", "piede", "piena", "pieno", "pietra", "pigro", "pinna", "pista", "pizza", "porta", "posto", "prato", "preme", "primo", "prova", "pugno", "punta", "punto", "quale", "quota", "radio", "reale", "regno", "resta", "ricco", "ritmo", "rocca", "rosso", "rotta", "ruota", "ruolo", "sacco", "salto", "salvo", "santo", "scala", "scena", "scopo", "scuro", "sedia", "segno", "sella", "senno", "senso", "serio", "serra", "sesto", "sogno", "soldi", "sonno", "sopra", "sorte", "spada", "spesa", "spina", "stato", "stile", "stima", "suono", "tacco", "taglio", "tanto", "tassa", "tazza", "tempo", "tenue", "terra", "testa", "tetto", "tigre", "tondo", "torre", "torta", "trama", "treno", "trova", "tutto", "udire", "ulivo", "umano", "umile", "unico", "unire", "usare", "utile", "valle", "vanto", "vasca", "verde", "verme", "verso", "vetro", "viale", "villa", "vinci", "viola", "vista", "visto", "vitto", "volpe", "volta", "volto", "zaino", "zampa", "zebra", "zitto", "zolla", "zucca"] 
-#Questa lista moooolto lunga sono tutte le parole che l'utente può inserire così da verificare le lettere
-#Non ci sono solo gli insulti, erano troppo pochi, così l'utente può inserire la parola che vuole, verificare le lettere e poi scrivere l'insulto
-ParolaSceltaComputer = random.choice(ParoleComputer)
-print(ParolaSceltaComputer)
-#Sceglie un insulto a caso dalla lista
-#qian: lo ho messo fuori da running perchè se lo mettiamo dentro, ogni volta che l'utente scrivere una lettere la parola cambia
-#perchè la pagina viene "ricaricata"
-letteraGiusta = list(ParolaSceltaComputer)
-letteraPremuta = ""
-listaParola = []
-ParolaInserita= []
-running = True
+    FontLettere = pygame.font.SysFont('Impact', 60)
+#    
+    vocabolario = open("Vocabolario.txt", "r")
+    ParoleComputer = ["RINCO", "SCEMO", "TONTO", "PAZZO", "LENTO", "EBETE", "PIGRO", "ROZZO", "FOLLE", "MOLLE", "ASINO", "CAPRA", "CAGNA", "FESSO", "VERME", "PIRLA", "CLOWN", "MATTO"]
+    ParoleAccUtente = []
+    for riga in vocabolario:
+        ParoleAccUtente.append(riga.strip())
+    
+    ParolaSceltaComputer = random.choice(ParoleComputer)
+    print("PAROLA SEGRETA:", ParolaSceltaComputer)
+    
+    #variabili---------------------------------
+    listaParola = []
+    tentativi = []
+    maxTentativi = 6
+    giocoFinito = False
+    #messaggioFinale = ""
+# ---------------- TASTIERA CLICCABILE ----------------
+#dizionario
+    tasti_mouse = {
+        # PRIMA RIGA
+        "Q": pygame.Rect(67,565, 55,70),
+        "W": pygame.Rect(127,565, 55,70),
+        "E": pygame.Rect(189,565, 53,70),
+        "R": pygame.Rect(250,565, 52,70),
+        "T": pygame.Rect(310,565, 57,70),
+        "Y": pygame.Rect(375,565, 52,70),
+        "U": pygame.Rect(435,565, 52,70),
+        "I": pygame.Rect(500,565, 50,70),
+        "O": pygame.Rect(560,565, 50,70),
+        "P": pygame.Rect(620,565, 50,70),
 
-while running:
-    for event in pygame.event.get():
-        if event.type == pygame.QUIT:
-            running = False
-            
-        if event.type == pygame.KEYDOWN:
-            if event.key == pygame.K_ESCAPE:
+        # SECONDA RIGA
+        "A": pygame.Rect(95,650, 55,70),
+        "S": pygame.Rect(155,650, 55,70),
+        "D": pygame.Rect(220,650, 55,70),
+        "F": pygame.Rect(280,650, 55,70),
+        "G": pygame.Rect(345,650, 50,70),
+        "H": pygame.Rect(405,650, 55,70),
+        "J": pygame.Rect(465,650, 55,70),
+        "K": pygame.Rect(530,650, 55,70),
+        "L": pygame.Rect(590,650, 55,70),
+
+        # TERZA RIGA
+        "INVIO": pygame.Rect(67,730, 83,75),
+        "Z": pygame.Rect(155,730, 55,75),
+        "X": pygame.Rect(220,730, 55,75),
+        "C": pygame.Rect(280,730, 55,75),
+        "V": pygame.Rect(345,730, 50,75),
+        "B": pygame.Rect(405,730, 55,75),
+        "N": pygame.Rect(465,730, 55,75),
+        "M": pygame.Rect(530,730, 55,75),
+        "CANC": pygame.Rect(590,730, 80,75)
+    }
+    running = True
+
+    while running:
+        for event in pygame.event.get():
+
+            if event.type == pygame.QUIT:
                 running = False
 
-            if event.key == pygame.K_BACKSPACE and len(listaParola) > 0:
-                listaParola.pop()
+            # ---------------- MOUSE ----------------
+            if event.type == pygame.MOUSEBUTTONDOWN and not giocoFinito:
+                pos_mouse = pygame.mouse.get_pos()
 
-            else:
-                letteraPremuta = event.unicode
-                if letteraPremuta.upper() in "QWERTYUIOPASDFGHJKLZXCVBNM" and len(listaParola) < 5:
-                    listaParola.append(letteraPremuta.upper())
-                    
+                for tasto, rect in tasti_mouse.items():
+                    if rect.collidepoint(pos_mouse):
 
-    schermo.blit(imgSfondo, (0, 0))
+                        if tasto == "INVIO":
+                            if len(listaParola) == 5:
+                                parolaInserita = "".join(listaParola)
+                                tentativi.append(parolaInserita)
+                                listaParola = []
 
-    # TITOLO
-    testoResoImg = FontLettere.render("INSULTLE", True, "black")
-    schermo.blit(testoResoImg, (50, 100))
+                                if parolaInserita == ParolaSceltaComputer:
+                                    giocoFinito = True
+                                    print("Hai Vinto!")
 
+                                elif len(tentativi) == maxTentativi:
+                                    giocoFinito = True
+                                    print("STUPIDOOO!")
 
-    # Disegno rettangoli (prima)
-    if len(listaParola) == 5:
-        for y in range(5):
+                        elif tasto == "CANC":
+                            if len(listaParola) > 0:
+                                listaParola.pop()
 
-            colonna = y % 5
-            riga = y // 5
+                        else:
+                            if len(listaParola) < 5:
+                                listaParola.append(tasto)
 
-            coordinataX = 200 + colonna * 92
-            coordinataY = 20 + riga * 77
+            # ---------------- TASTIERA ----------------
+            if event.type == pygame.KEYDOWN and not giocoFinito:
 
-            if listaParola[y] == letteraGiusta[y]:
-                pygame.draw.rect(schermo, "green", (coordinataX, coordinataY, 70, 70))
-            else:
-                pygame.draw.rect(schermo, "red", (coordinataX, coordinataY, 70, 70))
+                if event.key == pygame.K_ESCAPE:
+                    running = False
 
+                elif event.key == pygame.K_BACKSPACE and len(listaParola) > 0:
+                    listaParola.pop()
 
-    #Disegno lettere (dopo, così stanno sopra)
-    for x in range(len(listaParola)):
+                elif event.key == pygame.K_RETURN:
+                    if len(listaParola) == 5:
+                        parolaInserita = "".join(listaParola)
+                        tentativi.append(parolaInserita)
+                        listaParola = []
 
-        colonna = x % 5
-        riga = x // 5
+                        if parolaInserita == ParolaSceltaComputer:
+                            giocoFinito = True
+                            print("Hai Vinto!")
 
-        coordinataX = 200 + colonna * 92
-        coordinataY = 20 + riga * 77
+                        elif len(tentativi) == maxTentativi:
+                            giocoFinito = True
+                            print("STUPIDOOO!")
 
-        testoResoImg = FontLettere.render(listaParola[x], True, "black")
-        schermo.blit(testoResoImg, (coordinataX, coordinataY))
-        if x % 4 == 0:
-                if ParolaInserita == ParolaSceltaComputer:  
-                    print("Hai Vinto!")
-                    file = open("FileVincite.py", "a")
-                    file.write("Partita vinta!\n")
-                    file.close()
-                    pygame.quit()
                 else:
-                    print("Hai perso...")
-                    file = open("FileVincite.py", "a")
-                    file.write("Partita persa!\n")
-                    file.close()
+                    letteraPremuta = event.unicode
+                    if letteraPremuta.upper() in "QWERTYUIOPASDFGHJKLZXCVBNM" and len(listaParola) < 5:
+                        listaParola.append(letteraPremuta.upper())
+
+        #mostro lo sfondo
+        schermo.blit(imgSfondo, (0, 0))
+
+        # DISEGNO TENTATIVI COLORATI
+        for riga in range(len(tentativi)):
+
+            parola = tentativi[riga]
+            listaSceltaComputer = list(ParolaSceltaComputer)
+            for num in range(5):
+
+                colonna = num
+
+                coordinataX = 200 + colonna * 92
+                coordinataY = 20 + riga * 77
+
+                if parola[num] == listaSceltaComputer[num]:
+                    colore = (0, 200, 0)# verde
+                    listaSceltaComputer[num] = ""
+            #for mun in range(5):
+                elif parola[num] in listaSceltaComputer:
+                    colore = (220, 200, 0)  # giallo
+                    
+#                     elif parola[num] in listaSceltaComputer:
+#     colore = (220, 200, 0)
+#     listaSceltaComputer[listaSceltaComputer.index(parola[num])] = ""
+#                     
+                else:
+                    colore = (200, 0, 0)  # rosso
 
 
-    pygame.display.flip()
+                pygame.draw.rect(schermo, colore, (coordinataX, coordinataY, 70, 70))
 
-
+                testo = FontLettere.render(parola[num], True, "black")
+                schermo.blit(testo, (coordinataX + 15, coordinataY))
         
 
-            
-pygame.quit()
+        # DISEGNO PAROLA IN CORSO (non ancora inviata)
+        rigaAttuale = len(tentativi)
+
+        for num in range(len(listaParola)):
+
+            colonna = num
+
+            coordinataX = 200 + colonna * 92
+            coordinataY = 20 + rigaAttuale * 77
+
+            pygame.draw.rect(schermo, "white", (coordinataX, coordinataY, 70, 70))
+            testo = FontLettere.render(listaParola[num], True, "black")
+            schermo.blit(testo, (coordinataX + 15, coordinataY))
+
+
+        # MESSAGGIO FINALE
+#         conta = 0
+#         if giocoFinito and conta == 0:
+# #             testo_finale = FontMessaggio.render(messaggioFinale, True, "black")
+# #             schermo.blit(testo_finale, (200, 600))
+#             print("Hai Vinto!")
+#             file = open("FileVincite.txt", "a")
+#             file.write("Partita vinta!\n")
+#             conta += 1
+#             file.close()
+#         else:
+#             file = open("FileVincite.txt", "a")
+#             file.write("Ritenta, sarai più fortunato\n")
+#             conta += 1
+#             file.close()
+
+        pygame.display.flip()
+
+    pygame.quit()
+
+#------------------------------------
+    
+if __name__ == "__main__":
+    print(main())
