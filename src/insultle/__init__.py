@@ -14,6 +14,7 @@ def main() -> None:
     pygame.display.set_caption("Insultle") 
 
     imgSfondo = pygame.image.load("sfondoINSULTLE.jpg") 
+   # imgSfondo = pygame.transform.scale(imgSfondo,(Larghezza_Schermo,Altezza_Schermo))
     imgSfondo = pygame.transform.scale(imgSfondo,(Larghezza_Schermo,Altezza_Schermo))
 
     FontLettere = pygame.font.SysFont('Impact', 60)
@@ -33,11 +34,84 @@ def main() -> None:
     maxTentativi = 6
     giocoFinito = False
     #messaggioFinale = ""
+# ---------------- TASTIERA CLICCABILE ----------------
+#dizionario
+    tasti_mouse = {
+        # PRIMA RIGA
+        "Q": pygame.Rect(67,565, 55,70),
+        "W": pygame.Rect(127,565, 55,70),
+        "E": pygame.Rect(189,565, 53,70),
+        "R": pygame.Rect(250,565, 52,70),
+        "T": pygame.Rect(310,565, 57,70),
+        "Y": pygame.Rect(375,565, 52,70),
+        "U": pygame.Rect(435,565, 52,70),
+        "I": pygame.Rect(500,565, 50,70),
+        "O": pygame.Rect(560,565, 50,70),
+        "P": pygame.Rect(620,565, 50,70),
+
+        # SECONDA RIGA
+        "A": pygame.Rect(95,650, 55,70),
+        "S": pygame.Rect(155,650, 55,70),
+        "D": pygame.Rect(220,650, 55,70),
+        "F": pygame.Rect(280,650, 55,70),
+        "G": pygame.Rect(345,650, 50,70),
+        "H": pygame.Rect(405,650, 55,70),
+        "J": pygame.Rect(465,650, 55,70),
+        "K": pygame.Rect(530,650, 55,70),
+        "L": pygame.Rect(590,650, 55,70),
+
+        # TERZA RIGA
+        "INVIO": pygame.Rect(67,730, 83,75),
+        "Z": pygame.Rect(155,730, 55,75),
+        "X": pygame.Rect(220,730, 55,75),
+        "C": pygame.Rect(280,730, 55,75),
+        "V": pygame.Rect(345,730, 50,75),
+        "B": pygame.Rect(405,730, 55,75),
+        "N": pygame.Rect(465,730, 55,75),
+        "M": pygame.Rect(530,730, 55,75),
+        "CANC": pygame.Rect(590,730, 80,75)
+    }
 
     running = True
 
     while running:
         for event in pygame.event.get():
+
+            if event.type == pygame.QUIT:
+                running = False
+
+            # ---------------- MOUSE ----------------
+            if event.type == pygame.MOUSEBUTTONDOWN and not giocoFinito:
+                pos_mouse = pygame.mouse.get_pos()
+
+                for tasto, rect in tasti_mouse.items():
+                    if rect.collidepoint(pos_mouse):
+
+                        if tasto == "INVIO":
+                            if len(listaParola) == 5:
+                                parolaInserita = "".join(listaParola)
+                                tentativi.append(parolaInserita)
+                                listaParola = []
+
+                                if parolaInserita == ParolaSceltaComputer:
+                                    giocoFinito = True
+                                    print("Hai Vinto!")
+
+                                elif len(tentativi) == maxTentativi:
+                                    giocoFinito = True
+                                    print("STUPIDOOO!")
+
+                        elif tasto == "CANC":
+                            if len(listaParola) > 0:
+                                listaParola.pop()
+
+                        else:
+                            if len(listaParola) < 5:
+                                listaParola.append(tasto)
+
+            # ---------------- TASTIERA ----------------
+            if event.type == pygame.KEYDOWN and not giocoFinito:
+
             if event.type == pygame.QUIT:
                 running = False
                 
@@ -48,6 +122,9 @@ def main() -> None:
 
                 elif event.key == pygame.K_BACKSPACE and len(listaParola) > 0:
                     listaParola.pop()
+
+                elif event.key == pygame.K_RETURN:
+                    if len(listaParola) == 5:
                 
                 elif event.key == pygame.K_RETURN:
                     if len(listaParola) == 5:
@@ -56,6 +133,13 @@ def main() -> None:
                         tentativi.append(parolaInserita)
                         listaParola = []
 
+                        if parolaInserita == ParolaSceltaComputer:
+                            giocoFinito = True
+                            print("Hai Vinto!")
+
+                        elif len(tentativi) == maxTentativi:
+                            giocoFinito = True
+                            print("STUPIDOOO!")
                         # CONTROLLO VITTORIA
                         if parolaInserita == ParolaSceltaComputer:
                             #messaggioFinale = "HAI VINTO!"
@@ -78,6 +162,7 @@ def main() -> None:
                     letteraPremuta = event.unicode
                     if letteraPremuta.upper() in "QWERTYUIOPASDFGHJKLZXCVBNM" and len(listaParola) < 5:
                         listaParola.append(letteraPremuta.upper())
+
                         
         #mostro lo sfondo
         schermo.blit(imgSfondo, (0, 0))
@@ -101,6 +186,10 @@ def main() -> None:
                 elif parola[num] in listaSceltaComputer:
                     colore = (220, 200, 0)  # giallo
                     
+#                     elif parola[num] in listaSceltaComputer:
+#     colore = (220, 200, 0)
+#     listaSceltaComputer[listaSceltaComputer.index(parola[num])] = ""
+#                     
                 else:
                     colore = (200, 0, 0)  # rosso
 
@@ -149,4 +238,5 @@ def main() -> None:
 #------------------------------------
     
 if __name__ == "__main__":
+    print(main())
     print(main())

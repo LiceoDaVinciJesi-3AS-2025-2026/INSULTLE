@@ -3,7 +3,6 @@
 
 import pygame
 import random
-#from pathlib import Path
 
 def main() -> None:
     pygame.init()
@@ -17,22 +16,19 @@ def main() -> None:
     imgSfondo = pygame.transform.scale(imgSfondo,(Larghezza_Schermo,Altezza_Schermo))
 
     FontLettere = pygame.font.SysFont('Impact', 60)
-#    
-    vocabolario = open("Vocabolario.txt", "r")
+    FontMessaggio = pygame.font.SysFont('Arial', 40)
+
     ParoleComputer = ["RINCO", "SCEMO", "TONTO", "PAZZO", "LENTO", "EBETE", "PIGRO", "ROZZO", "FOLLE", "MOLLE", "ASINO", "CAPRA", "CAGNA", "FESSO", "VERME", "PIRLA", "CLOWN", "MATTO"]
-    ParoleAccUtente = []
-    for riga in vocabolario:
-        ParoleAccUtente.append(riga.strip())
-    
+
     ParolaSceltaComputer = random.choice(ParoleComputer)
     print("PAROLA SEGRETA:", ParolaSceltaComputer)
     
     #variabili---------------------------------
     listaParola = []
     tentativi = []
-    maxTentativi = 6
-    giocoFinito = False
-    #messaggioFinale = ""
+    max_tentativi = 6
+    gioco_finito = False
+    messaggio_finale = ""
 
     running = True
 
@@ -41,7 +37,7 @@ def main() -> None:
             if event.type == pygame.QUIT:
                 running = False
                 
-            if event.type == pygame.KEYDOWN and not giocoFinito:
+            if event.type == pygame.KEYDOWN and not gioco_finito:
                 
                 if event.key == pygame.K_ESCAPE:
                     running = False
@@ -58,21 +54,13 @@ def main() -> None:
 
                         # CONTROLLO VITTORIA
                         if parolaInserita == ParolaSceltaComputer:
-                            #messaggioFinale = "HAI VINTO!"
-                            giocoFinito = True
-                            print("Hai Vinto!")
-                            file = open("FileVincite.txt", "a")
-                            file.write("Partita vinta!\n")
-                            file.close()
+                            messaggio_finale = "HAI VINTO!"
+                            gioco_finito = True
                         
                         # CONTROLLO SCONFITTA
-                        elif len(tentativi) == maxTentativi:
-                            #messaggioFinale = "HAI PERSO! Era: " + ParolaSceltaComputer
-                            giocoFinito = True
-                            print("STUPIDOOO!")
-                            file = open("FileVincite.txt", "a")
-                            file.write(f"Ritenta, sarai più fortunato\nla parola era {ParolaSceltaComputer}")
-                            file.close()
+                        elif len(tentativi) == max_tentativi:
+                            messaggio_finale = "HAI PERSO! Era: " + ParolaSceltaComputer
+                            gioco_finito = True
 
                 else:
                     letteraPremuta = event.unicode
@@ -112,14 +100,14 @@ def main() -> None:
         
 
         # DISEGNO PAROLA IN CORSO (non ancora inviata)
-        rigaAttuale = len(tentativi)
+        riga_corrente = len(tentativi)
 
         for num in range(len(listaParola)):
 
             colonna = num
 
             coordinataX = 200 + colonna * 92
-            coordinataY = 20 + rigaAttuale * 77
+            coordinataY = 20 + riga_corrente * 77
 
             pygame.draw.rect(schermo, "white", (coordinataX, coordinataY, 70, 70))
             testo = FontLettere.render(listaParola[num], True, "black")
@@ -127,20 +115,9 @@ def main() -> None:
 
 
         # MESSAGGIO FINALE
-#         conta = 0
-#         if giocoFinito and conta == 0:
-# #             testo_finale = FontMessaggio.render(messaggioFinale, True, "black")
-# #             schermo.blit(testo_finale, (200, 600))
-#             print("Hai Vinto!")
-#             file = open("FileVincite.txt", "a")
-#             file.write("Partita vinta!\n")
-#             conta += 1
-#             file.close()
-#         else:
-#             file = open("FileVincite.txt", "a")
-#             file.write("Ritenta, sarai più fortunato\n")
-#             conta += 1
-#             file.close()
+        if gioco_finito:
+            testo_finale = FontMessaggio.render(messaggio_finale, True, "black")
+            schermo.blit(testo_finale, (200, 600))
 
         pygame.display.flip()
 
