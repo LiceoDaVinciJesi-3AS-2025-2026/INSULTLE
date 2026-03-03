@@ -26,7 +26,17 @@ def main() -> None:
     
     ParolaSceltaComputer = random.choice(ParoleComputer)
     print("PAROLA SEGRETA:", ParolaSceltaComputer)
+    pygame.mixer.init() 
+    pygame.mixer.music.load("suonoSottofondo.mp3")
+    pygame.mixer.music.set_volume(0.4) #suonoSottofondo.pygame.mixer.music.set_volume(0.4) sbagliato perche mixer non si assegna alle variabili
+    pygame.mixer.music.play(-1)
     
+    suonoSconfitta = pygame.mixer.Sound("suonoSconfitta.mp3")
+    suonoVittoria = pygame.mixer.Sound("suonoVittoria.mp3")
+    suonoSconfitta.set_volume(0.7)
+    suonoVittoria.set_volume(0.7)
+    
+
     #variabili---------------------------------
     listaParola = []
     tentativi = []
@@ -117,19 +127,18 @@ def main() -> None:
                                 listaParola.append(tasto)
 
             # ---------------- TASTIERA ----------------
-         #   if event.type == pygame.KEYDOWN and not giocoFinito:
+            if event.type == pygame.KEYDOWN:
 
                 if event.type == pygame.QUIT:
                     running = False
-                
-            if event.type == pygame.KEYDOWN and not giocoFinito:
-                
+                    
                 if event.key == pygame.K_ESCAPE:
                     running = False
+                
+            if event.type == pygame.KEYDOWN and not giocoFinito:
 
-                elif event.key == pygame.K_BACKSPACE and len(listaParola) > 0:
+                if event.key == pygame.K_BACKSPACE and len(listaParola) > 0:
                     listaParola.pop()
-
                 
                 elif event.key == pygame.K_RETURN:
                     if len(listaParola) == 5:
@@ -138,13 +147,6 @@ def main() -> None:
                         tentativi.append(parolaInserita)
                         listaParola = []
 
-                        if parolaInserita == ParolaSceltaComputer:
-                            giocoFinito = True
-                            print("Hai Vinto!")
-
-                        elif len(tentativi) == maxTentativi:
-                            giocoFinito = True
-                            print("STUPIDOOO!")
                         # CONTROLLO VITTORIA
                         if parolaInserita == ParolaSceltaComputer:
                             #messaggioFinale = "HAI VINTO!"
@@ -153,6 +155,8 @@ def main() -> None:
                             file = open("FileVincite.txt", "a")
                             file.write("Partita vinta!\n")
                             file.close()
+                            pygame.mixer.music.stop()
+                            suonoVittoria.play()
                         
                         # CONTROLLO SCONFITTA
                         elif len(tentativi) == maxTentativi:
@@ -162,6 +166,8 @@ def main() -> None:
                             file = open("FileVincite.txt", "a")
                             file.write(f"Ritenta, sarai più fortunato\nla parola era {ParolaSceltaComputer}")
                             file.close()
+                            pygame.mixer.music.stop()
+                            suonoSconfitta.play()
 
                 else:
                     letteraPremuta = event.unicode
@@ -189,13 +195,12 @@ def main() -> None:
                     listaSceltaComputer[num] = ""
 
                     
-                elif parola[num] in listaSceltaComputer:
-                    colore = (220, 200, 0)
-                    listaSceltaComputer[listaSceltaComputer.index(parola[num])] = ""
-                    
-                else:
+                elif parola[num] != listaSceltaComputer[num] and parola[num] not in listaSceltaComputer:
                     colore = (200, 0, 0)  # rosso
-
+                    #listaSceltaComputer[listaSceltaComputer.index(parola[num])] = ""
+                    
+                elif parola[num] != listaSceltaComputer[num] and parola[num] in listaSceltaComputer:
+                    colore = (220, 200, 0) #giallo
 
                 pygame.draw.rect(schermo, colore, (coordinataX, coordinataY, 70, 70))
 
@@ -235,25 +240,6 @@ def main() -> None:
         schermo.blit(testo_timer, (50, 20))
         # Disegno il timer in alto a sinistra dello schermo
         
-        # MESSAGGIO FINALE
-#         conta = 0
-#         if giocoFinito and conta == 0:
-# #            testo_finale = FontMessaggio.render(messaggioFinale, True, "black")
-# #            schermo.blit(testo_finale, (200, 600))
-#             print("Hai Vinto!")
-#             tempo_finale = (pygame.time.get_ticks() - tempo_inizio) // 1000
-#             if not tempo_salvato:
-#                 file = open("FileVincite.txt", "a")
-#                 file.write("Partita vinta in", tempo_finale, "secondi\n")
-#                 conta += 1
-#                 file.close()
-#         else:
-#             file = open("FileVincite.txt", "a")
-#             file.write("Ritenta, sarai più fortunato\n")
-#             conta += 1
-#             file.close()
-#             tempo_salvato = True
-        
 
         pygame.display.flip()
 
@@ -262,5 +248,4 @@ def main() -> None:
 #------------------------------------
     
 if __name__ == "__main__":
-    print(main())
     print(main())
