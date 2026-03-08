@@ -1,5 +1,6 @@
 import pygame
 from __init__ import main
+from FileClassifica import classifica 
 
 def schermataIniziale() -> None:
     pygame.init()
@@ -47,7 +48,9 @@ def schermataIniziale() -> None:
                         if tasto == "GIOCA":
                             main()
                         elif tasto == "CLASSIFICA":
-                            print("CLASSIFICA")
+                            classifica()
+
+                            
 
         pygame.display.flip()
 

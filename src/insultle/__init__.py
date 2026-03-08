@@ -6,6 +6,7 @@ import random
 import time
 from platformdirs import PlatformDirs
 from pathlib import Path
+from FileClassifica import classifica 
 
 pygame.init()
 pygame.mixer.init() 
@@ -19,8 +20,9 @@ suonoVittoria.set_volume(0.7)
 
 giocoFinito = False
 parolaSceltaComputer = ""
-testo = "INSULTLE\nVi siete divertiti a giocare ad Insultle??? Se sì lasciate una bella recensione (10/10)\n"
-#--------nome giocatore----------------------------------------------------------
+testo = "INSULTLE\nVi siete divertiti a giocare ad Insultle??? \nSe sì lasciate una bella recensione (10/10)\n"
+
+#-------- NOME GIOCATORE, SFONDO E ALTRE SCRITTE ---------------- 
 def nome():
     Larghezza_Schermo = 822
     Altezza_Schermo = 745
@@ -70,27 +72,27 @@ def nome():
 
         pygame.display.flip()
     
-#--------vittoria----------------------------------------------------------
+#---------------- VITTORIA ----------------
 def vittoria(nome_giocatore,tempo):
     global giocoFinito
     pygame.mixer.music.stop()
     suonoVittoria.play()
     giocoFinito = True
-    with open("fileVincente.txt", "w") as file:
-       file.write(f"{testo}BRAVO {nome_giocatore} HAI VINTO!! ci hai messo: {tempo}sec")
+    with open("fileVincente.txt", "a") as file:
+       file.write(f"{testo}BRAVO {nome_giocatore} HAI VINTO!! ci hai messo: {tempo}sec \n")
 
-#--------sconfitta----------------------------------------------------------   
+#---------------- SCONFITTA ----------------   
 def sconfitta():
     global giocoFinito
     global parolaSceltaComputer
     giocoFinito = True
     print("STUPIDOOO")
     
-    with open("fileVincente.txt", "w") as file:
-       file.write(f"{testo}BRAVO PECCATO, ritenta che sarai più fortunato!!! la parola era: {parolaSceltaComputer}")
+    with open("fileVincente.txt", "a") as file:
+       file.write(f"{testo} PECCATO, ritenta che sarai più fortunato!!! \nla parola era: {parolaSceltaComputer} \n")
 
 
-#--------schermata iniziale----------------------------------------------------------
+#---------------- SCHERMATA INIZIALE ----------------
 def schermataIniziale():
 
     Larghezza_Schermo = 822
@@ -138,11 +140,11 @@ def schermataIniziale():
                             nome_giocatore = nome()
                             gioco(nome_giocatore)
                         elif tasto == "CLASSIFICA":
-                            print("CLASSIFICA")
+                            classifica()
 
         pygame.display.flip()
     
-#--------gioco----------------------------------------------------------  
+#---------------- GIOCO ----------------  
 def gioco(nome_giocatore):
     
     global giocoFinito
