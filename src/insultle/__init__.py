@@ -23,10 +23,10 @@ dirs = PlatformDirs("insultle", ensure_exists=True)
 percorsoFileVincente = dirs.user_data_dir + "/fileVincente.txt"
 
 #caricamento e configurazione degli effetti sonori
-suonoSconfitta = get_sound("suonoSconfitta.mp3")
-suonoVittoria = get_sound("suonoVittoria.mp3")
-#suonoSconfitta = pygame.mixer.Sound("src/insultle/suonoSconfitta.mp3")
-#suonoVittoria = pygame.mixer.Sound("src/insultle/suonoVittoria.mp3")
+percorsoSuonoSconfitta = get_sound("suonoSconfitta.mp3")
+percorsoSuonoVittoria = get_sound("suonoVittoria.mp3")
+suonoSconfitta = pygame.mixer.Sound( percorsoSuonoSconfitta )
+suonoVittoria = pygame.mixer.Sound( percorsoSuonoVittoria )
 suonoSconfitta.set_volume(0.7)
 suonoVittoria.set_volume(0.7)
 
@@ -51,8 +51,8 @@ def nome():
     FontLettere = pygame.font.SysFont('Impact', 60)
     
     #carica l'immagine di sfondo in base alle variabili sopra scritte
-    imgSfondo = get_image("sfondoINSULTLE.jpg")
-    #imgSfondo = pygame.image.load("src/insultle/sfondoINSULTLE.jpg") 
+    percorsoImgSfondo = get_image("sfondoINSULTLE.jpg")
+    imgSfondo = pygame.image.load( percorsoImgSfondo ) 
     imgSfondo = pygame.transform.scale(imgSfondo,(Larghezza_Schermo,Altezza_Schermo))
 
     nome_giocatore = "" #stringa vuota in cui andrà aggiunto il nome
@@ -153,11 +153,11 @@ def main():
     #parole da indovinare
     ParoleComputer = ["RINCO", "SCEMO", "SCEMA", "TONTO", "TONTA", "PAZZO", "PAZZA", "LENTO", "LENTA", "EBETE", "PIGRO", "PIGRA", "ROZZO", "ROZZA", "FOLLE", "MOLLE", "ASINO", "CAPRA", "CAGNA", "FESSO", "VERME", "PIRLA", "CLOWN", "MATTO", "MATTA", "TARDO", "TARDA"]
     #carico le immagini
-    imgSfondo = get_image("sfondoBIANCO.jfif")
-    #imgSfondo = pygame.image.load("src/insultle/sfondoBIANCO.jfif") 
+    percorsoImgSfondo = get_image("sfondoBIANCO.jfif")
+    imgSfondo = pygame.image.load(percorsoImgSfondo) 
     imgSfondo = pygame.transform.scale(imgSfondo,(Larghezza_Schermo,Altezza_Schermo))
-    imgSfondo = get_image("RegoleInsultle.png")
-    #imgRegole = pygame.image.load("src/insultle/RegoleInsultle.png") 
+    percorsoImgSfondo = get_image("RegoleInsultle.png")
+    imgRegole = pygame.image.load(percorsoImgSfondo) 
     imgRegole = pygame.transform.scale(imgRegole,(400,400))
     
     #creo due tasti che mi portano al gioco vero e proprio
@@ -262,16 +262,16 @@ def gioco(nome_giocatore, parolaSceltaComputer, parolaSpeciale, ParoleComputer):
     pygame.display.set_caption("Insultle") 
 
     #carico sfondo
-    imgSfondo = get_image("sfondoINSULTLE.jpg")
-    #imgSfondo = pygame.image.load("src/insultle/sfondoINSULTLE.jpg") 
+    PercorsoImgSfondo = get_image("sfondoINSULTLE.jpg")
+    imgSfondo = pygame.image.load(PercorsoImgSfondo) 
     imgSfondo = pygame.transform.scale(imgSfondo,(Larghezza_Schermo,Altezza_Schermo))
     #carico immagine della casa che porterà il giocatore al menù iniziale
-    imgCasa = get_image("casa.png")
-    #imgCasa = pygame.image.load("src/insultle/casa.png") 
+    PercorsoImgCasa = get_image("casa.png")
+    imgCasa = pygame.image.load(PercorsoImgCasa) 
     imgCasa = pygame.transform.scale(imgCasa,(50,50))
     #carico immagine tasto retry che fa ripartire il gioco da capo
-    imgRetry = get_image("retry.jpg")
-    #imgRetry = pygame.image.load("src/insultle/retry.jpg") 
+    PercorsoImgRetry = get_image("retry.jpg")
+    imgRetry = pygame.image.load(PercorsoImgRetry) 
     imgRetry = pygame.transform.scale(imgRetry,(50,50))
 
     FontLettere = pygame.font.SysFont('Impact', 60)
@@ -285,10 +285,10 @@ def gioco(nome_giocatore, parolaSceltaComputer, parolaSpeciale, ParoleComputer):
     
     
     #avvia la musica di sottofondo
-    get_sound("suonoSottofondo.mp3")
-    #pygame.mixer.music.load("src/insultle/suonoSottofondo.mp3")
-    pygame.mixer.music.set_volume(0.4) #suonoSottofondo.pygame.mixer.music.set_volume(0.4) sbagliato perche mixer non si assegna alle variabili
-    pygame.mixer.music.play(-1) #rendo quella musica un loop
+    PercorsoSottofondo = get_sound("suonoSottofondo.mp3")
+    sottofonodo = pygame.mixer.music.load(PercorsoSottofondo)
+    sottofonodo = pygame.mixer.music.set_volume(0.4) #suonoSottofondo.pygame.mixer.music.set_volume(0.4) sbagliato perche mixer non si assegna alle variabili
+    sottofonodo = pygame.mixer.music.play(-1) #rendo quella musica un loop
 
     # ---------------- VARIABILI ----------------
     listaParola = []
