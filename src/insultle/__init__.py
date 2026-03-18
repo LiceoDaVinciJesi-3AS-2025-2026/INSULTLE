@@ -1,12 +1,15 @@
 # INSULTLE
 # Dafne Belardinelli, Edoardo Pani, Qian Qian Zhang
 
-import pygame
+#libreria standard
 import random
 import time
 from datetime import date
-from platformdirs import PlatformDirs
 from pathlib import Path
+
+#librerie pip
+import pygame
+from platformdirs import PlatformDirs
 
 #inizializzazione di Pygame e del mixer audio
 pygame.init() #fondamentale per il gioco (inializza tutto)
