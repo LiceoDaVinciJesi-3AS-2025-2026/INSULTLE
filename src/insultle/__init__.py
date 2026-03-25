@@ -67,6 +67,7 @@ def nome():
             if event.type == pygame.QUIT:
                 #finisce il gioco
                 running = False
+                return ""
             
             #se l'evento è un tasto premuto analizzo quale tasto è
             if event.type == pygame.KEYDOWN:
@@ -210,7 +211,8 @@ def main():
                             parolaSpeciale = False
                             running = False #così la schermata iniziale non c'è più, sennò la schermata di gioco si sovrapponeva a quella iniziale
                             nome_giocatore = nome() #salviamo il nome del giocatore
-                            
+                            if nome_giocatore == "":
+                                break
                             #sceglie una parola dalla lista ParoleComputer
                             parolaSceltaComputer = random.choice(ParoleComputer)
                             gioco(nome_giocatore, parolaSceltaComputer,parolaSpeciale, ParoleComputer) #va alla funzione gioco
@@ -218,6 +220,8 @@ def main():
                             running = False #così la schermata iniziale non c'è più, sennò la schermata di gioco si sovrapponeva a quella iniziale
                             parolaSpeciale = True
                             nome_giocatore = nome() #salviamo il nome del giocatore
+                            if nome_giocatore == "":
+                                break
                             #SELEZIONE PAROLA DEL GIORNO 
                             oggi = date.today().day
                             if oggi -1 == 27: #se è il 28esimo giorno
@@ -278,10 +282,14 @@ def gioco(nome_giocatore, parolaSceltaComputer, parolaSpeciale, ParoleComputer):
     
    
     #apre il file vocabolario (le parole accettabili) e togli lo spazio finale da ogni parola
-    with open( get_data("Vocabolario.txt"), "r") as vocabolario: #apre il file vocabolario in lettura
-        paroleAccettabili = [p.strip().upper() for p in vocabolario.readlines()] #legge tutte le tighe e restituisce una lista con
-                                                                                 #le parole accettabili senza \n (strip)
-
+    percorsoFileVocabolario = get_data("Vocabolario.txt")
+    paroleAccettabili = []
+    fileVocabolario = open(percorsoFileVocabolario, "r")
+    for riga in fileVocabolario:
+        parola = riga.strip().upper() # pulisco la stringa da \n e la rendo maiuscola
+        paroleAccettabili.append(parola)
+    fileVocabolario.close()
+    
     
     
     #avvia la musica di sottofondo

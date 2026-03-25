@@ -1,12 +1,12 @@
 <p align="center">
-  <img src="immaginiReadme/logo.png" width="300"/>
+  <img src="logo.png" width="300"/>
 </p>
 
-**Insultle** è un gioco ispirato a Wordle, il cui lobiettivo è indovinare una parola segreta di 5 lettere, ma… tutte le parole sono "insulti".
+**Insultle** è un gioco ispirato a Wordle, il cui l'obiettivo è indovinare una parola segreta di 5 lettere, ma… tutte le parole sono "insulti".
 
 ## Come si gioca
 
-Il giocatore deve indovinare una parola di **5 lettere**, con un un massimo di **6 tentativi**. Dopo ogni tentativo, le lettere cambiano colore per fornire indizi:
+Il giocatore deve indovinare una parola di **5 lettere**, con un massimo di **6 tentativi**. Dopo ogni tentativo, le lettere cambiano colore per fornire indizi:
 
   - 🟩 **Verde** → lettera corretta nella posizione giusta  
   - 🟨 **Giallo** → lettera presente ma in posizione sbagliata  
