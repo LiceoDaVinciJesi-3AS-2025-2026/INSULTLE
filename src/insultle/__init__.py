@@ -116,11 +116,13 @@ def vittoria(nome_giocatore,tempo):
     pygame.mixer.music.stop() #fermo la musica di sottofondo
     suonoVittoria.play() #metto il fuono di vittoria
     giocoFinito = True #modifico la variabile globale
-
+    
     # PROF: Diventa una operazione inutile se non lo comunichi all'utente e se qualcun'altro non può vederlo...
-    with open(percorsoFileVincente, "w") as file: #apro il file
+    with open(percorsoFileVincente, "a") as file: #apro il file
         #             testo predefinito
-        file.write(f"{testo}BRAVO {nome_giocatore} HAI VINTO!! ci hai messo: {tempo}sec \n")
+        #file.write(f"{testo}BRAVO {nome_giocatore} HAI VINTO!! ci hai messo: {tempo}sec \n")
+        file.write(f"{nome_giocatore},{tempo}\n")
+    classifica(nome_giocatore)
         #lo apro in w perchè non voglio un elenco continuo di "vinto" e "perso"
 
 #---------------- SCONFITTA ----------------
@@ -136,11 +138,74 @@ def sconfitta():
     pygame.mixer.music.stop() #fermo la musica di sottofondo
     suonoSconfitta.play() #metto il fuono di sconfitta
     giocoFinito = True  #modifico la variabile globale
-    with open(percorsoFileVincente, "w") as file: #apro il file
-        #             testo predefinito
-        file.write(f"{testo} PECCATO, ritenta che sarai più fortunato!!! \nla parola era: {parolaSceltaComputer} \n")
+#     with open(percorsoFileVincente, "a") as file: #apro il file
+#         #             testo predefinito
+#         file.write(f"{tempo}\n")
+        #file.write(f"{testo} PECCATO, ritenta che sarai più fortunato!!! \nla parola era: {parolaSceltaComputer} \n")
         #lo apro in w perchè non voglio un elenco continuo di "vinto" e "perso"
+def classifica(nome_giocatore):
+#     Larghezza_Schermo = 822
+#     Altezza_Schermo = 745
+#     schermo = pygame.display.set_mode((822, 745))
+#     font = pygame.font.SysFont('Impact', 40)
+#     percorsoImgSfondo = get_image("sfondoBIANCO.jfif")
+#     imgSfondo = pygame.image.load(percorsoImgSfondo)
+#     imgSfondo = pygame.transform.scale(imgSfondo,(Larghezza_Schermo,Altezza_Schermo))
+#     risultati = []
+# 
+#     # se il file non esiste ancora
+#     if not Path(percorsoFileVincente).exists():
+#         print("Nessuna partita giocata ancora")
+#         return
+# 
+#     with open(percorsoFileVincente, "r") as file:
+#         for riga in file:
+#             nome_giocatore, tempo = riga.strip().split(",")
+#             risultati.append((nome_giocatore, int(tempo)))
+# 
+#     # ordina per tempo (più veloce = migliore)
+#     risultati.sort(key=lambda x: x[1])
+# 
+#     #print("\n--- CLASSIFICA ---")
+#     for i, (nome, tempo) in enumerate(risultati):  # top 10
+#         testo = FontLettere.render((f"{i+1}. {nome} - {tempo} sec"), True, "black")
+#     imgSfondo.blit(0,0)
 
+    schermo = pygame.display.set_mode((822, 745))
+    font = pygame.font.SysFont('Impact', 40)
+
+    risultati = []
+
+    if not Path(percorsoFileVincente).exists():
+        return
+
+    with open(percorsoFileVincente, "r") as file:
+#         for riga in file:
+#             nome, tempo = riga.strip().split(",")
+#             risultati.append((nome, int(tempo)))
+        for riga in file:
+            parti = riga.strip().split(",")
+
+            if len(parti) == 2:  # riga corretta
+                nome, tempo = parti
+                risultati.append((nome, int(tempo)))
+
+    risultati.sort(key=lambda x: x[1])
+
+    running = True
+    while running:
+        schermo.fill("white")
+
+        for i, (nome, tempo) in enumerate(risultati[:10]):
+            testo = font.render(f"{i+1}. {nome} - {tempo}s", True, "black")
+            schermo.blit(testo, (100, 100 + i*50))
+
+        for event in pygame.event.get():
+            if event.type == pygame.QUIT:
+                running = False
+
+        pygame.display.flip()
+    
 #---------------- SCHERMATA INIZIALE ----------------
 def main():
 
