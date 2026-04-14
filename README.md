@@ -38,3 +38,18 @@ Il gioco è sviluppato con **Pygame** e include:
 ---
 
 Divertiti a giocare a *Insultle*… e cerca di non prenderla sul personale!
+
+<hr>
+
+- qian ha si è occupata dello sfondo del gioco e ha creato una prima bozza della funzione main
+- edoardo ha scritto il codice per far si che il computer scelga un insulto e che l'utente non potesse scrivere parole inesistenti
+- qian ha scritto il codice per scrivere con la tastiera fisica
+- edoardo ha creato il file vittoria e si è occupato della sua apertura
+- dafne ha trovato la pos dei tasti sullo sfondo e ha creato il codice per scrivere con la tastiera dello sfondo
+- i tre, insieme all'AI, hanno corretto il codice main (la colorazione delle lettere)
+- edoardo ha aggiunto il timer
+- qian ha aggiunto i suoni di vittoria e sconfitta
+- dafne, insieme all'AI, ha creato la funzione della schermata iniziale e della parola del giorno
+- qian, con l'AI, ha sistemato le variabili/lo scorrimento delle lettere/i tentativi
+- qian si è occupata di scrivere i commenti
+  
