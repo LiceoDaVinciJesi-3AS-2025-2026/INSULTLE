@@ -12,6 +12,10 @@ Il giocatore deve indovinare una parola di **5 lettere**, con un massimo di **6 
   - 🟨 **Giallo** → lettera presente ma in posizione sbagliata  
   - 🟥 **Rosso** → lettera non presente nella parola  
 
+<p align="center">
+  <img src="logo.png" width="300"/>
+</p>
+
 ## Modalità di gioco
 
 - **Gioca** → parola casuale scelta dal computer (aggiungere screen)
