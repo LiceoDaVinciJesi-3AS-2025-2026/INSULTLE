@@ -13,7 +13,7 @@ Il giocatore deve indovinare una parola di **5 lettere**, con un massimo di **6 
   - 🟥 **Rosso** → lettera non presente nella parola  
 
 <p align="center">
-  <img src="imgGioco.png" width="300"/>
+  <img src="logo.png" width="300"/>
 </p>
 
 ## Modalità di gioco
