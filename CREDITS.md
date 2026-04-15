@@ -57,12 +57,12 @@ Se sei un detentore di copyright e ritieni che questo utilizzo violi i tuoi diri
 - **Prompt utilizzato:** "il titolo 'INSULTLE' deve essere riquadrata alcune lettere in verde, altre in giallo e altre in rosso"
 - **Generato da:** chatGPT
 - **Azienda:** OpenAI
-- **Data:** 
+- **Data:** 24 marzo 2026
 - **Fonte:** chatgpt.com
 
 ### RegoleInsultle.png
 - **Prompt utilizzato:** ""
 - **Generato da:** chatGPT
 - **Azienda:** OpenAI
-- **Data:** 
+- **Data:** 8 marzo 2026
 - **Fonte:** chatgpt.com
