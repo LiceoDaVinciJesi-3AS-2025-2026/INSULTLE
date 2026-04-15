@@ -1,6 +1,6 @@
 # CREDITI
 
-Il mio gioco INSULTLE" utilizza le seguenti risorse:
+Il mio gioco INSULTLE utilizza le seguenti risorse:
 
 ## Immagini
 
@@ -22,6 +22,8 @@ Il mio gioco INSULTLE" utilizza le seguenti risorse:
 - **Licenza:** Freepik Standard License
 - **Modifiche:** nessuna
 
+## Suoni
+
 ### Colonna sonora (suonoSottofondo.mp3)
 - **Autore:** pixabay
 - **Fonte:** https://pixabay.com/it/sound-effects/search/vittoria/
@@ -36,7 +38,23 @@ Il mio gioco INSULTLE" utilizza le seguenti risorse:
 - **Autore:** pixabay
 - **Fonte:** https://pixabay.com/it/sound-effects/search/vittoria/
 - **Licenza:** royalty-free
-  
+
+## Immagini generate dall'AI
+
+### logo.png
+- **Prompt utilizzato:** "il titolo 'INSULTLE' deve essere riquadrata alcune lettere in verde, altre in giallo e altre in rosso"
+- **Generato da:** chatGPT
+- **Azienda:** OpenAI
+- **Data:** 24 marzo 2026
+- **Fonte:** chatgpt.com
+
+### RegoleInsultle.png
+- **Prompt utilizzato:** "crea una immagine con le regole di wordle, ma adattato per un gioco che si chiama insultle"
+- **Generato da:** chatGPT
+- **Azienda:** OpenAI
+- **Data:** 8 marzo 2026
+- **Fonte:** chatgpt.com
+
 # DISCLAIMER
 
 Questo gioco contiene screenshot di giochi commerciali che sono proprietà dei rispettivi autori.
@@ -50,19 +68,3 @@ Questo gioco contiene screenshot di giochi commerciali che sono proprietà dei r
   - C'è un effettivo scopo di commento/critica/discussione
 
 Se sei un detentore di copyright e ritieni che questo utilizzo violi i tuoi diritti, contattami a zhangqianqian80@gmail.com e rimuoverò immediatamente il contenuto.
-
-## Immagini generate dall'AI
-
-### logo.png
-- **Prompt utilizzato:** "il titolo 'INSULTLE' deve essere riquadrata alcune lettere in verde, altre in giallo e altre in rosso"
-- **Generato da:** chatGPT
-- **Azienda:** OpenAI
-- **Data:** 
-- **Fonte:** chatgpt.com
-
-### RegoleInsultle.png
-- **Prompt utilizzato:** ""
-- **Generato da:** chatGPT
-- **Azienda:** OpenAI
-- **Data:** 
-- **Fonte:** chatgpt.com
