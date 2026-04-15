@@ -599,3 +599,21 @@ def gioco(nome_giocatore, parolaSceltaComputer, parolaSpeciale, ParoleComputer):
 
 
     pygame.quit() #chiude Pygame quando il gioco termina
+
+#--------------------------------------------------------------------
+    
+# **funzioni**
+#
+# Questo modulo contiene tutte le funzioni principali del gioco Insultle,
+# sviluppato con Pygame. Gestisce l'interfaccia grafica, l'inserimento del nome
+# del giocatore, il menu iniziale, la logica di gioco ispirata a Wordle,
+# il sistema di tentativi, il timer, gli effetti sonori e la visualizzazione
+# della classifica. Include inoltre la gestione degli input da tastiera e mouse
+# e il caricamento delle risorse (immagini, suoni e file di testo).
+#
+# License: See LICENSE file in the project root for details.
+# 
+# autori: Dafne Belardinelli, Edoardo Pani, Qian Qian Zhang
+# Dafne Belardinelli: dafne.belardinelli@gmail.com
+# Edoardo Pani: edoardorobertopani@gmail.com
+# Qian Qian Zhang: zhangqianqian80@gmail.com
