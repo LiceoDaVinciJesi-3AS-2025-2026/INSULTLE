@@ -65,8 +65,8 @@ def nome():
         schermo.blit(imgSfondo,(0,0))
 
         #scritta
-        testo = FontLettere.render("INSERISCI IL TUO NOME", True, "black")
-        schermo.blit(testo,(150,200))
+        testoDomanda = FontLettere.render("INSERISCI IL TUO NOME", True, "black")
+        schermo.blit(testoDomanda,(150,200))
 
         #rettangolo bianco dove va visualizzato il nome
         rect_nome = pygame.Rect(200,300,400,80)
@@ -91,13 +91,16 @@ def vittoria(nome_giocatore,tempo):
     suonoVittoria.play() #metto il fuono di vittoria
     giocoFinito = True #modifico la variabile globale
     
+    testo = "INSULTLE\nVi siete divertiti a giocare ad Insultle??? \nSe sì lasciate una bella recensione (10/10)\n"
+    
     # PROF: Diventa una operazione inutile se non lo comunichi all'utente e se qualcun'altro non può vederlo...
     with open(percorsoFileVincente, "a") as file: #apro il file
         #             testo predefinito
         #file.write(f"{testo}BRAVO {nome_giocatore} HAI VINTO!! ci hai messo: {tempo}sec \n")
         file.write(f"{nome_giocatore},{tempo}\n")
-    classifica(nome_giocatore)
+    #classifica(nome_giocatore)
         #lo apro in w perchè non voglio un elenco continuo di "vinto" e "perso"
+        
 
 #---------------- SCONFITTA ----------------
 def sconfitta():
@@ -112,11 +115,17 @@ def sconfitta():
     pygame.mixer.music.stop() #fermo la musica di sottofondo
     suonoSconfitta.play() #metto il fuono di sconfitta
     giocoFinito = True  #modifico la variabile globale
-#     with open(percorsoFileVincente, "a") as file: #apro il file
+    
+    testo = "INSULTLE\nVi siete divertiti a giocare ad Insultle??? \nSe sì lasciate una bella recensione (10/10)\n"
+    
+    with open(percorsoFileVincente, "a") as file: #apro il file
 #         #             testo predefinito
 #         file.write(f"{tempo}\n")
-        #file.write(f"{testo} PECCATO, ritenta che sarai più fortunato!!! \nla parola era: {parolaSceltaComputer} \n")
+        file.write(f"{testo} PECCATO, ritenta che sarai più fortunato!!! \nla parola era: {parolaSceltaComputer} \n")
         #lo apro in w perchè non voglio un elenco continuo di "vinto" e "perso"
+
+#----------------CLASSIFICA------------------------
+
 def classifica(nome_giocatore):
 #     Larghezza_Schermo = 822
 #     Altezza_Schermo = 745
@@ -218,7 +227,7 @@ def main():
     FontLettere = pygame.font.SysFont('Impact', 60)
 
     #parole da indovinare
-    ParoleComputer = ["RINCO", "SCEMO", "SCEMA", "TONTO", "TONTA", "PAZZO", "PAZZA", "LENTO", "LENTA", "EBETE", "PIGRO", "PIGRA", "ROZZO", "ROZZA", "FOLLE", "MOLLE", "ASINO", "CAPRA", "CAGNA", "FESSO", "VERME", "PIRLA", "CLOWN", "MATTO", "MATTA", "TARDO", "TARDA"]
+    ParoleComputer = ["ASINO", "CAGNA", "CAPRA", "CLOWN", "CESSO", "EBETE", "FESSO", "FOLLE","FALSO", "GOFFO", "LENTO", "LONZA", "MATTO", "MOLLE", "MONCO","MERDA", "PAZZO", "PIGRO","PIPPA", "ORCO", "PORCO", "PIRLA", "RATTO", "RINCO", "ROZZO", "SCEMO", "SERPE", "TARDO", "TONTO","VACCA", "VERME"]
     #carico le immagini
     percorsoImgSfondo = get_image("sfondoBIANCO.jfif")
     imgSfondo = pygame.image.load(percorsoImgSfondo)
@@ -604,8 +613,8 @@ def gioco(nome_giocatore, parolaSceltaComputer, parolaSpeciale, ParoleComputer):
     
 # **funzioni**
 #
-# Questo modulo contiene tutte le funzioni principali del gioco Insultle,
-# sviluppato con Pygame. Gestisce l'interfaccia grafica, l'inserimento del nome
+# Questo modulo contiene tutte le funzioni principali del gioco Insultle.
+# Gestisce l'interfaccia grafica, l'inserimento del nome
 # del giocatore, il menu iniziale, la logica di gioco ispirata a Wordle,
 # il sistema di tentativi, il timer, gli effetti sonori e la visualizzazione
 # della classifica. Include inoltre la gestione degli input da tastiera e mouse
